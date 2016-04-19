@@ -48,7 +48,7 @@ public class MTGServer
             while ((inputLine = br.readLine()) != null){
                System.out.println("Client request: " + inputLine);   
                MTG magic = parseData(fetchData(inputLine), inputLine);
-               System.out.println(magic.getMana() + magic.getFlavor() + magic.getToughness() + magic.getStrength());
+               System.out.println(magic.toString());
             }           
         }
         catch(IOException ex)  {
@@ -106,7 +106,12 @@ public class MTGServer
         card.setManaCost(jCard.getString("cost"));
         card.setRulesText(jCard.getString("text"));
         card.setColors(jCard.getJSONArray("colors").toString());
-        
+        card.setTypes(jCard.getJSONArray("types").toString());
+        if(card.isCreature())
+        {
+        	card.setStrength(Integer.parseInt(jCard.getString("power")));
+        	card.setToughness(Integer.parseInt(jCard.getString("toughness")));
+        }
         
         return card;
     }    
