@@ -19,14 +19,12 @@ import java.util.Scanner;
  */
 public class MTGClient {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args)  {
         System.out.println("Echo Client");
     try {
         System.out.println("Waiting for connection.....");
         InetAddress localAddress = InetAddress.getLocalHost();
+        
         try {
             Socket clientSocket = new Socket(localAddress, 6000);
             BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -34,7 +32,9 @@ public class MTGClient {
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             System.out.println("Connected to server");
             Scanner scanner = new Scanner(System.in);
-            while (true) {
+            
+            while (true) 
+            {
                 System.out.print("Enter card name: ");
                 String inputLine = scanner.nextLine();
                 if ("quit".equalsIgnoreCase(inputLine)) {
@@ -46,9 +46,8 @@ public class MTGClient {
                 {
                     String response = br.readLine();
                                 
-                    System.out.println("Response: "+response);
-                }
-                    
+                    System.out.println("Response: " +response);
+                }     
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

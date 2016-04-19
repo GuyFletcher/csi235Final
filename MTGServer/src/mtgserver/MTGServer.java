@@ -20,9 +20,8 @@ public class MTGServer
 {
 	
 	public static void main(String[] args) {
-        String response;
         Socket sSocket = null;
-        int year, numMovies;
+
         
             
         try {
@@ -37,11 +36,7 @@ public class MTGServer
         
         try {        
             BufferedReader br = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
-            //InputStream -- InputStreamReader -- BufferedReader
             PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
-            //OutputStream -- PrintWriter
-            //Prints formatted representations of objects to a text-output stream.
-            //true to enable automatic flushing
             
             String inputLine;
             
@@ -67,13 +62,13 @@ public class MTGServer
         
         String cardID = "";
         
-        for(int i = 0; i <= cardData.length; i++)
+        for(int i = 0; i < cardData.length; i++)
         {
             //add   -   to end of all but last cardData strings for url
             cardID += cardData[i] + "-";
             
         }
-       
+        cardID = fixString(cardID);
         System.out.println(cardID);
         //cardURL =  removeLastChar(cardURL);  this is the old way we did it, trying out a new way
         
@@ -94,19 +89,22 @@ public class MTGServer
         
         return sb.toString();
     }
-
+	
+	private static String fixString(String str) {
+		str = str.toLowerCase();
+		return str.substring(0,str.length()-1);
+	}
 	
 	public static MTG parseData(String MTGJsonStr, String cardName) throws JSONException
     {
         JSONObject jCard = new JSONObject(MTGJsonStr);
-        JSONObject cardObject = jCard.getJSONObject(cardName);
         MTG card = new MTG();
         
         card.setName(jCard.getString("name"));
         card.setManaCost(jCard.getString("cost"));
         card.setRulesText(jCard.getString("text"));
-        card.setColors(jCard.getJSONArray("colors").toString());
-        card.setTypes(jCard.getJSONArray("types").toString());
+        card.setTypes(jCard.getJSONArray("types"));
+        
         if(card.isCreature())
         {
         	card.setStrength(Integer.parseInt(jCard.getString("power")));

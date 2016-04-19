@@ -5,6 +5,13 @@
  */
 package mtg;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 /**
  *
  * @author Fletcher Hart
@@ -15,7 +22,7 @@ public class MTG {
      */
 	
     private String name,manaCost, rulesText;
-    private String types;
+    private String[] types;
     private String colors;
     private boolean creature;
     private int strength, toughness;
@@ -31,24 +38,6 @@ public class MTG {
        this.setCreature(false);
        this.setStrength(0);
        this.setToughness(0);
-    }
-    
-    MTG(String name, String manaCost, String rules, String types, String flavor, String colors, int strength, int toughness)
-    {
-        this.setName(name);
-    	this.setManaCost(manaCost);
-    	this.setRulesText(rules);
-        this.setTypes(types);
-        this.setColors(colors);
-        this.setCreature(false);
-        
-        for(String s : types.split(","))
-        {
-        	if(s.equals("creature"))
-        		this.setCreature(true);
-        		this.setStrength(strength);
-        		this.setToughness(toughness);
-        }
     }
 
     private static String removeLastChar(String str) {
@@ -79,12 +68,26 @@ public class MTG {
 		this.rulesText = rulesText;
 	}
 	
-	public String getTypes() {
+	public String[] getTypes() {
 		return types;
 	}
 
-	public void setTypes(String types) {
-		this.types = types;
+	public void setTypes(JSONArray jsonArray) {
+		
+		if(jsonArray == null)
+			return;
+		
+		List<String> list = new ArrayList<String>();
+		for (int i=0; i<jsonArray.length(); i++) {
+		    try {
+				list.add( jsonArray.getString(i) );
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		String[] typeArray = list.toArray(new String[list.size()]);
+		this.types = typeArray;
 	}
 
 	public String getColors() {
@@ -112,6 +115,10 @@ public class MTG {
 	}
 
 	public boolean isCreature() {
+		for (String s : types)
+			if (s.equals("creature")) 
+				creature = true;
+		
 		return creature;
 	}
 
@@ -129,10 +136,12 @@ public class MTG {
 
 	public String toString()
 	{
-		StringBuilder sb = null;
+		StringBuilder sb = new StringBuilder();
 		sb.append(this.getName() + "\n");
 		sb.append(this.getManaCost() + "\n");
-		sb.append(this.getTypes() + "\n");
+		for(String s : types)
+			sb.append(s + " ");
+		sb.append("\n");
 		sb.append(this.getRulesText() + "\n");
 		if(this.isCreature())
 			sb.append(this.getStrength() + "/" + this.getToughness());
