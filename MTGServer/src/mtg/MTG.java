@@ -15,8 +15,8 @@ public class MTG {
      */
 	
     private String name,manaCost, rulesText;
-    private String[] types;
-    private String[] colors;
+    private String types;
+    private String colors;
     private boolean creature;
     private int strength, toughness;
     private String imageURL;
@@ -33,7 +33,7 @@ public class MTG {
        this.setToughness(0);
     }
     
-    MTG(String name, String manaCost, String rules, String[] types, String flavor, String[] colors, int strength, int toughness)
+    MTG(String name, String manaCost, String rules, String types, String flavor, String colors, int strength, int toughness)
     {
         this.setName(name);
     	this.setManaCost(manaCost);
@@ -42,7 +42,7 @@ public class MTG {
         this.setColors(colors);
         this.setCreature(false);
         
-        for(String s : types)
+        for(String s : types.split(","))
         {
         	if(s.equals("creature"))
         		this.setCreature(true);
@@ -79,19 +79,19 @@ public class MTG {
 		this.rulesText = rulesText;
 	}
 	
-	public String[] getTypes() {
+	public String getTypes() {
 		return types;
 	}
 
-	public void setTypes(String[] types) {
+	public void setTypes(String types) {
 		this.types = types;
 	}
 
-	public String[] getColors() {
+	public String getColors() {
 		return colors;
 	}
 
-	public void setColors(String[] colors) {
+	public void setColors(String colors) {
 		this.colors = colors;
 	}
 
@@ -127,5 +127,17 @@ public class MTG {
 		this.imageURL = imageURL;
 	}
 
+	public String toString()
+	{
+		StringBuilder sb = null;
+		sb.append(this.getName() + "\n");
+		sb.append(this.getManaCost() + "\n");
+		sb.append(this.getTypes() + "\n");
+		sb.append(this.getRulesText() + "\n");
+		if(this.isCreature())
+			sb.append(this.getStrength() + "/" + this.getToughness());
+		
+		return sb.toString();
+	}
         
 }
