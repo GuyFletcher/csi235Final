@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -36,7 +37,7 @@ public class MTGServer
         
         try {        
             BufferedReader br = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
+            ObjectOutputStream out = new ObjectOutputStream(sSocket.getOutputStream());
             
             String inputLine;
             
@@ -44,6 +45,7 @@ public class MTGServer
                System.out.println("Client request: " + inputLine);   
                MagicCard magic = parseData(fetchData(inputLine), inputLine);
                System.out.println(magic.toString());
+               out.writeObject(magic);
             }           
         }
         catch(IOException ex)  {

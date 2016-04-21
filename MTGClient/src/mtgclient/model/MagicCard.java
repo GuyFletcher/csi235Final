@@ -5,6 +5,7 @@
  */
 package mtgclient.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -19,12 +20,12 @@ import javafx.beans.property.StringProperty;
  *
  * @author Fletcher Hart
  */
-public class MagicCard {
+public class MagicCard implements Serializable {
     /**
      * @param args the command line arguments
      */
 	
-    private StringProperty name, manaCost, rulesText;
+    private String name, manaCost, rulesText;
     private String[] types;
     private String colors;
     private boolean creature;
@@ -33,9 +34,9 @@ public class MagicCard {
     
     public MagicCard()
     {
-       this.name = new SimpleStringProperty(""); 
-       this.manaCost = new SimpleStringProperty("");
-       this.rulesText = new SimpleStringProperty("");
+       this.name = "";
+       this.manaCost = "";
+       this.rulesText = "";
        this.setColors(null);
        this.setTypes(null);
        this.setCreature(false);
@@ -44,27 +45,27 @@ public class MagicCard {
     }
 
 	public String getName() {
-		return name.get();
+		return name;
 	}
 
 	public void setName(String name) {
-		this.name.set(name);
+		this.name = name;
 	}
 
 	public String getManaCost() {
-		return manaCost.get();
+		return manaCost;
 	}
 
 	public void setManaCost(String manaCost) {
-		this.manaCost.set(manaCost);
+		this.manaCost = manaCost;
 	}
 
 	public String getRulesText() {
-		return rulesText.get();
+		return rulesText;
 	}
 
 	public void setRulesText(String rulesText) {
-		this.rulesText.set(rulesText);
+		this.rulesText = rulesText;
 	}
 	
 	public String[] getTypes() {

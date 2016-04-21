@@ -8,8 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import mtgclient.model.MagicCard;
 
 public class MainApp extends Application {
+	
+	private static MTGClient client;
 	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -59,5 +62,9 @@ public class MainApp extends Application {
 	
 	 public static void main(String[] args) {
 	        launch(args);
+	 }
+
+	public static MagicCard search(String text) {
+		return client.run(text);
 	}
 }

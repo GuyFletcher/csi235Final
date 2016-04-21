@@ -24,9 +24,9 @@
                            <children>
                               <AnchorPane prefHeight="40.0" prefWidth="343.0">
                                  <children>
-                                    <TextField layoutX="14.0" layoutY="8.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                                    <TextField fx:id="searchBox" layoutX="14.0" layoutY="8.0" onAction="#search" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="20.0" />
                                     <Label layoutX="52.0" layoutY="-8.0" text="Enter Card Name:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="1.0" />
-                                    <Button layoutX="230.0" layoutY="19.0" mnemonicParsing="false" text="Search" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="20.0" />
+                                    <Button layoutX="230.0" layoutY="19.0" mnemonicParsing="false" onAction="#search" text="Search" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="20.0" />
                                  </children>
                               </AnchorPane>
                            </children>
