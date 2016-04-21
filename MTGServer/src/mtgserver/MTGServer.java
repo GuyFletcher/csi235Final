@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import mtg.MTG;
+import mtg.MagicCard;
 
 public class MTGServer 
 {
@@ -42,7 +42,7 @@ public class MTGServer
             
             while ((inputLine = br.readLine()) != null){
                System.out.println("Client request: " + inputLine);   
-               MTG magic = parseData(fetchData(inputLine), inputLine);
+               MagicCard magic = parseData(fetchData(inputLine), inputLine);
                System.out.println(magic.toString());
             }           
         }
@@ -95,10 +95,10 @@ public class MTGServer
 		return str.substring(0,str.length()-1);
 	}
 	
-	public static MTG parseData(String MTGJsonStr, String cardName) throws JSONException
+	public static MagicCard parseData(String MTGJsonStr, String cardName) throws JSONException
     {
         JSONObject jCard = new JSONObject(MTGJsonStr);
-        MTG card = new MTG();
+        MagicCard card = new MagicCard();
         
         card.setName(jCard.getString("name"));
         card.setManaCost(jCard.getString("cost"));

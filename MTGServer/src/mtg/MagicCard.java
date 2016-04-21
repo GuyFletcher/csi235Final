@@ -16,7 +16,7 @@ import org.json.JSONException;
  *
  * @author Fletcher Hart
  */
-public class MTG {
+public class MagicCard {
     /**
      * @param args the command line arguments
      */
@@ -28,7 +28,7 @@ public class MTG {
     private int strength, toughness;
     private String imageURL;
     
-    public MTG()
+    public MagicCard()
     {
        this.setName(""); 
        this.setManaCost("");
