@@ -35,7 +35,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <GridPane layoutX="33.0" layoutY="87.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <GridPane layoutX="33.0" layoutY="87.0" prefHeight="173.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,8 +44,8 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="25.0" minHeight="6.0" prefHeight="6.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
                                     <Label text="Card Name:" />
@@ -56,7 +56,7 @@
                                     <Label fx:id="cardNameLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                                     <Label fx:id="manaCostLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                     <Label fx:id="typeLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                                    <Label fx:id="rulesTextLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                    <Label fx:id="rulesTextLabel" prefHeight="51.0" prefWidth="97.0" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                                     <Label fx:id="ptLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
