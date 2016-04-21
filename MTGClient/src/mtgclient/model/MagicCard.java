@@ -12,6 +12,9 @@ import java.util.Stack;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author Fletcher Hart
@@ -21,7 +24,7 @@ public class MagicCard {
      * @param args the command line arguments
      */
 	
-    private String name,manaCost, rulesText;
+    private StringProperty name, manaCost, rulesText;
     private String[] types;
     private String colors;
     private boolean creature;
@@ -30,9 +33,9 @@ public class MagicCard {
     
     public MagicCard()
     {
-       this.setName(""); 
-       this.setManaCost("");
-       this.setRulesText("");
+       this.name = new SimpleStringProperty(""); 
+       this.manaCost = new SimpleStringProperty("");
+       this.rulesText = new SimpleStringProperty("");
        this.setColors(null);
        this.setTypes(null);
        this.setCreature(false);
@@ -40,32 +43,28 @@ public class MagicCard {
        this.setToughness(0);
     }
 
-    private static String removeLastChar(String str) {
-        return str.substring(0,str.length()-1);
-    }
-    
 	public String getName() {
-		return name;
+		return name.get();
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name.set(name);
 	}
 
 	public String getManaCost() {
-		return manaCost;
+		return manaCost.get();
 	}
 
 	public void setManaCost(String manaCost) {
-		this.manaCost = manaCost;
+		this.manaCost.set(manaCost);
 	}
 
 	public String getRulesText() {
-		return rulesText;
+		return rulesText.get();
 	}
 
 	public void setRulesText(String rulesText) {
-		this.rulesText = rulesText;
+		this.rulesText.set(rulesText);
 	}
 	
 	public String[] getTypes() {
