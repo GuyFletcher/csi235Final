@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mtg;
+package mtgclient.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -12,16 +13,19 @@ import java.util.Stack;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author Fletcher Hart
  */
-public class MagicCard {
+public class MagicCard implements Serializable {
     /**
      * @param args the command line arguments
      */
 	
-    private String name,manaCost, rulesText;
+    private String name, manaCost, rulesText;
     private String[] types;
     private String colors;
     private boolean creature;
@@ -30,9 +34,9 @@ public class MagicCard {
     
     public MagicCard()
     {
-       this.setName(""); 
-       this.setManaCost("");
-       this.setRulesText("");
+       this.name = "";
+       this.manaCost = "";
+       this.rulesText = "";
        this.setColors(null);
        this.setTypes(null);
        this.setCreature(false);
@@ -40,10 +44,6 @@ public class MagicCard {
        this.setToughness(0);
     }
 
-    private static String removeLastChar(String str) {
-        return str.substring(0,str.length()-1);
-    }
-    
 	public String getName() {
 		return name;
 	}

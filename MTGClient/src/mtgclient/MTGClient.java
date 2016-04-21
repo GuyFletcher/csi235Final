@@ -8,10 +8,15 @@ package mtgclient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
+
+import javafx.fxml.FXMLLoader;
+import mtgclient.model.MagicCard;
+import mtgclient.view.CardViewController;
 
 /**
  *
@@ -19,8 +24,42 @@ import java.util.Scanner;
  */
 public class MTGClient {
 
+	
+	public static MagicCard run(String searchKey)
+	{
+		try {
+			
+			System.out.println("Waiting for connection.....");
+			InetAddress localAddress = InetAddress.getLocalHost();
+			
+			try{
+				Socket clientSocket = new Socket(localAddress, 6000);
+				PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+				System.out.println("Connected to server");
+				out.println(searchKey);
+				
+				try {
+					ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+					MagicCard ret;
+					ret = (MagicCard) in.readObject();
+					return ret;
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+				
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
     public static void main(String[] args)  {
-        System.out.println("Echo Client");
+        
+    	System.out.println("Echo Client");
     try {
         System.out.println("Waiting for connection.....");
         InetAddress localAddress = InetAddress.getLocalHost();
