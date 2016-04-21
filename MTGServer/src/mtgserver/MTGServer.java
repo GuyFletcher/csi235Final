@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import mtg.MagicCard;
+import mtgclient.model.MagicCard;
 
 public class MTGServer 
 {
